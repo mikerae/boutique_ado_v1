@@ -75,17 +75,17 @@ def checkout(request):
                 request, "There's nothing in your bag at the moment")
             return redirect(reverse('products'))
 
-        current_bag = bag_contents(request)
-        total = current_bag['grand_total']
-        # stripe needs amount to be charged as integer
-        stripe_total = round(total * 100)
-        stripe.api_key = stripe_secret_key
-        intent = stripe.PaymentIntent.create(
-            amount=stripe_total,
-            currency=settings.STRIPE_CURRENCY,
-        )
+    current_bag = bag_contents(request)
+    total = current_bag['grand_total']
+    # stripe needs amount to be charged as integer
+    stripe_total = round(total * 100)
+    stripe.api_key = stripe_secret_key
+    intent = stripe.PaymentIntent.create(
+        amount=stripe_total,
+        currency=settings.STRIPE_CURRENCY,
+    )
 
-        order_form = OrderForm()
+    order_form = OrderForm()
 
     if not stripe_public_key:
         messages.warning(
