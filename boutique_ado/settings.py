@@ -171,9 +171,6 @@ STATIC_URL = '/static/'
 # The following adjustments to source code
 # were made to correct deployment failure:
 
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
 
 if DEBUG:
     STATICFILES_DIRS = [
